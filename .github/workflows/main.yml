@@ -36,11 +36,11 @@ jobs:
       - name: kustomize edit
         if: ${{ github.event.inputs.image }}
         run: |
-          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
           cd secret
-          kustomize edit set image ${{ github.event.inputs.image }}:${{ github.event.inputs.sha-tag }}
-          cd ..
-          rm -f kustomize
+          if [ ! -f "./kustomize" ]; then
+            curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+          fi
+          ./kustomize edit set image ${{ github.event.inputs.image }}:${{ github.event.inputs.sha-tag }}
       
       - name: Git Commit/Push Changes
         uses: actions-x/commit@v2
