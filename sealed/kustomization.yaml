@@ -7,4 +7,4 @@ resources:
 - secret-sealed.yaml
 images:
 - name: iflwx/flask-demo
-  newTag: 3b3cc2a1def4327a9021156bb48547b8ace06f79
+  newTag: 91d4e3d987de9b9051251338c1d586814384a6cc
